@@ -92,3 +92,9 @@ Debian packages:
 * `perl`
 * `libdigest-crc-perl`
 * `libdevice-serialport-perl`
+
+## License
+
+* `monarco-flash.pl` - BSD 3-Clause License - see LICENSE.txt
+* firmware binary images under `firmware-bin/` - not open source, binary form can be redistributed without any restriction
+* libraries under `libperl/` (`Fuser`, `Device::SerialPort::XModem`) - the same terms as Perl itself
