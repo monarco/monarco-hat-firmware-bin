@@ -2,7 +2,7 @@
 
 ## Usage
 
-### Install Dependencies and Clone Repository
+### Prepare Environment and Clone Repository
 
 Install dependencies - on Debian/Raspbian:
 
@@ -18,7 +18,22 @@ $ git clone https://github.com/monarco/monarco-hat-firmware-bin
 $ cd monarco-hat-firmware-bin
 ```
 
+Disable Linux console on UART - on Raspberry Pi edit `/boot/cmdline.txt`:
+
+```
+$ sudo sed 's/ console=serial0,[0-9]\+//' -i /boot/cmdline.txt
+```
+
 ### Flashing Firmware
+
+Stop any application which use UART with the Monarco HAT (`/dev/ttyAMA0` on Raspberry Pi).
+For example, the REX Control System `RexCore` service can be stopped by:
+
+```
+$ sudo service rexcore stop
+```
+
+Run firmware downloader with path to the most recent firmware image:
 
 ```
 $ sudo ./monarco-flash.pl flash ./firmware-bin/fw-monarco-hat-2004.bin
