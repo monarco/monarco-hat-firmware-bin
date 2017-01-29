@@ -8,7 +8,7 @@ Install dependencies - on Debian/Raspbian:
 
 ```
 $ sudo apt update
-$ sudo apt install git perl libdigest-crc-perl libdevice-serialport-perl
+$ sudo apt install git perl-base libdigest-crc-perl libdevice-serialport-perl
 ```
 
 Clone repository:
@@ -36,7 +36,7 @@ $ sudo service rexcore stop
 Run firmware downloader with path to the most recent firmware image:
 
 ```
-$ sudo ./monarco-flash.pl flash ./firmware-bin/fw-monarco-hat-2004.bin
+$ sudo ./monarco-flash.pl flash ./firmware-bin/fw-monarco-hat-2005.bin
 Monarco HAT Flash Firmware Downloader, version 1.1
 (c) REX Controls 2016, http://www.rexcontrols.com
 
@@ -56,7 +56,7 @@ XModem: Start, waiting for handshake
 XModem: Handshake success
 XModem: Sending: .................................................................................................................................................................
 
-CRC RESULT: [18] c--CRC: 0000BB5C--
+CRC RESULT: [18] c--CRC: 000016F9--
 
 OK!
 ```
@@ -92,6 +92,7 @@ Debian packages:
 * `perl`
 * `libdigest-crc-perl`
 * `libdevice-serialport-perl`
+
 
 ## License
 
