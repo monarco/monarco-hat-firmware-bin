@@ -1,5 +1,8 @@
 # Monarco HAT Flash Firmware Downloader
 
+Firmware version history and roadmap: <https://github.com/monarco/monarco-hat-documentation/blob/master/Monarco_HAT_Firmware_Roadmap.md>
+
+
 ## Usage
 
 ### Prepare Environment and Clone Repository
@@ -36,7 +39,7 @@ $ sudo service rexcore stop
 Run firmware downloader with path to the most recent firmware image:
 
 ```
-$ sudo ./monarco-flash.pl flash ./firmware-bin/fw-monarco-hat-2005.bin
+$ sudo ./monarco-flash.pl flash ./firmware-bin/fw-monarco-hat-2006.bin
 Monarco HAT Flash Firmware Downloader, version 1.1
 (c) REX Controls 2016, http://www.rexcontrols.com
 
@@ -56,7 +59,7 @@ XModem: Start, waiting for handshake
 XModem: Handshake success
 XModem: Sending: .................................................................................................................................................................
 
-CRC RESULT: [18] c--CRC: 000016F9--
+CRC RESULT: [18] c--CRC: 00009C5C--
 
 OK!
 ```
