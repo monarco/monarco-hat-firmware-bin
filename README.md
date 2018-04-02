@@ -3,6 +3,12 @@
 Firmware version history and roadmap: <https://github.com/monarco/monarco-hat-documentation/blob/master/Monarco_HAT_Firmware_Roadmap.md>
 
 
+## Other Resources
+
+* [Monarco Homepage - https://www.monarco.io/](https://www.monarco.io/)
+* [Repository - Documentation for the Monarco HAT](https://github.com/monarco/monarco-hat-documentation)
+
+
 ## Usage
 
 ### Prepare Environment and Clone Repository
@@ -26,6 +32,8 @@ Disable Linux console on UART - on Raspberry Pi edit `/boot/cmdline.txt`:
 ```
 $ sudo sed 's/ console=serial0,[0-9]\+//' -i /boot/cmdline.txt
 ```
+
+and reboot to apply the settings.
 
 ### Flashing Firmware
 
@@ -95,6 +103,11 @@ Debian packages:
 * `perl`
 * `libdigest-crc-perl`
 * `libdevice-serialport-perl`
+
+
+## Common Problems
+
+Do not use GPIOs 0 (ID_SD), 1 (ID_SC), 2 (SDA), 3 (SCL), 8 (CE0), 9 (MISO), 10 (MOSI), 11 (SCLK), 14 (TXD), 15 (RXD), 20, 21, 26 for any custom applications with Monarco HAT! You could break correct operation of the Monarco HAT. Using colliding GPIOs can break the operation until complete power cycling is performed.  
 
 
 ## License
