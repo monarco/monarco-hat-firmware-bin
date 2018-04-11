@@ -9,7 +9,7 @@ Firmware version history and roadmap: <https://github.com/monarco/monarco-hat-do
 * [Repository - Documentation for the Monarco HAT](https://github.com/monarco/monarco-hat-documentation)
 
 
-## Usage
+## Firmware Update
 
 ### Prepare Environment and Clone Repository
 
@@ -95,6 +95,41 @@ Monarco HAT Flash Firmware Downloader, version 1.1
 
 MCU Bootloader ID: [1.60 ChipID: 247DBC0257516B45]
 ```
+
+
+## ID EEPROM Update
+
+ID EEPROM on the Monarco HAT contains device-tree-overlay according to the HAT standard which is automatically loaded by Raspberry Pi bootloader.
+
+The EEPROM update is normally not needed as it contains only hardware description. However, if there is some incompatible change in Linux kernel related to the device-tree format, EEPROM should be updated for correct operation with new kernel version.
+
+Recently, this was the case when Raspbian upgraded kernel from 4.4 to 4.9, which led to broken UART remapping.
+
+**If you have Monarco HAT series E and older (shipped before 10/2017), and want to use it with current Raspbian, you should update the EEPROM by:**
+
+```
+$ sudo ./monarco-eeprom.sh update
+Monarco HAT ID EEPROM flash tool version 1.1.
+(c) REX Controls 2018, http://www.rexcontrols.com
+
+KERNEL_MAJOR: "4" KERNEL_MINOR: "14"
+HAT_VER_DT: "0" HAT_VER_HW: "105"
+
+EEPROM NEEDS UPGRADE, CONTINUE? TYPE yes: yes
+# Writing EEPROM:
+1536 bytes (1.5 kB, 1.5 KiB) copied, 6.57705 s, 0.2 kB/s
+3+1 records in
+3+1 records out
+1809 bytes (1.8 kB, 1.8 KiB) copied, 7.75253 s, 0.2 kB/s
+
+# Checking EEPROM:
+8+0 records in
+8+0 records out
+4096 bytes (4.1 kB, 4.0 KiB) copied, 0.281417 s, 14.6 kB/s
+
+EEPROM FLASH FINISHED OK!
+```
+
 
 ## Runtime Requirements
 
