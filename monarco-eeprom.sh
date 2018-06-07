@@ -3,6 +3,9 @@
 # monarco-eeprom.sh
 # HAT ID EEPROM update tool for the Monarco HAT board.
 #
+# https://www.monarco.io
+# https://github.com/monarco/
+#
 # Copyright 2018 REX Controls s.r.o. http://www.rexcontrols.com
 # Author: Vlastimil Setka
 #
@@ -17,7 +20,7 @@ GPIO_WR_ENABLE=26
 
 SCRIPTPATH=$(dirname $(readlink -f $0))
 
-echo "Monarco HAT ID EEPROM flash tool, version 1.1"
+echo "Monarco HAT ID EEPROM flash tool, version 1.2"
 echo "(c) REX Controls 2018, http://www.rexcontrols.com"
 echo ""
 
@@ -25,11 +28,6 @@ if [ $EUID -ne 0 ]; then
   echo "ERROR: Root user required for Monarco HAT EEPROM ID update, UID $EUID detected! Please run as root. Exiting." 1>&2
   exit 3
 fi
-
-# TODO: Default UPDATE mode:
-# - check current EEPROM version from /proc (gen 0 vs 1, ver 103, 104, 105, 106)
-# - check kernel version - 4.4, newer, older (not compatible)
-# - if not matching, offer upgrade / downgrade if eeprom file available - after confirm, do flashing
 
 MODE=$1
 FILE=$2
@@ -176,4 +174,6 @@ if [ $RES != 0 ]; then
   exit 10
 else
   echo "EEPROM FLASH FINISHED OK!"
+  echo "REBOOT YOUR DEVICE TO TAKE EFFECT."
+  echo
 fi

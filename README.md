@@ -1,4 +1,4 @@
-# Monarco HAT Flash Firmware Downloader
+# Monarco HAT Firmware Images and Tools
 
 Firmware version history and roadmap: <https://github.com/monarco/monarco-hat-documentation/blob/master/Monarco_HAT_Firmware_Roadmap.md>
 
@@ -47,7 +47,7 @@ $ sudo service rexcore stop
 Run firmware downloader with path to the most recent firmware image:
 
 ```
-$ sudo ./monarco-flash.pl flash ./firmware-bin/fw-monarco-hat-2006.bin
+$ sudo ./monarco-flash.pl flash ./firmware-bin/fw-monarco-hat-2007.bin
 Monarco HAT Flash Firmware Downloader, version 1.1
 (c) REX Controls 2016, http://www.rexcontrols.com
 
@@ -109,7 +109,7 @@ Recently, this was the case when Raspbian upgraded kernel from 4.4 to 4.9, which
 
 ```
 $ sudo ./monarco-eeprom.sh update
-Monarco HAT ID EEPROM flash tool version 1.1.
+Monarco HAT ID EEPROM flash tool, version 1.1
 (c) REX Controls 2018, http://www.rexcontrols.com
 
 KERNEL_MAJOR: "4" KERNEL_MINOR: "14"
@@ -147,6 +147,7 @@ Do not use GPIOs 0 (ID_SD), 1 (ID_SC), 2 (SDA), 3 (SCL), 8 (CE0), 9 (MISO), 10 (
 
 ## License
 
-* `monarco-flash.pl` - BSD 3-Clause License - see LICENSE.txt
+* `monarco-flash.pl`, `monarco-eeprom.sh` - BSD 3-Clause License - see LICENSE.txt
 * firmware binary images under `firmware-bin/` - not open source, binary form can be redistributed without any restriction
+* device tree files under `device-tree/` - GNU General Public License version 2 (as Linux Kernel)
 * libraries under `libperl/` (`Fuser`, `Device::SerialPort::XModem`) - the same terms as Perl itself

@@ -8,6 +8,9 @@
 # Then it communicates via UART with baudrate autodetection.
 # The UART is connected to RPi's ttyAMA0.
 #
+# https://www.monarco.io
+# https://github.com/monarco/
+#
 # Copyright 2016 REX Controls s.r.o. http://www.rexcontrols.com
 # Author: Vlastimil Setka
 #
