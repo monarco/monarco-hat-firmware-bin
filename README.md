@@ -2,6 +2,7 @@
 
 Firmware version history and roadmap: <https://github.com/monarco/monarco-hat-documentation/blob/master/Monarco_HAT_Firmware_Roadmap.md>
 
+Latest firmware version: 2.008
 
 ## Other Resources
 
@@ -47,7 +48,7 @@ $ sudo service rexcore stop
 Run firmware downloader with path to the most recent firmware image:
 
 ```
-$ sudo ./monarco-flash.pl flash ./firmware-bin/fw-monarco-hat-2007.bin
+$ sudo ./monarco-flash.pl flash ./firmware-bin/fw-monarco-hat-2008.bin
 Monarco HAT Flash Firmware Downloader, version 1.1
 (c) REX Controls 2016, http://www.rexcontrols.com
 
