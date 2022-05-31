@@ -6,7 +6,7 @@
 # https://www.monarco.io
 # https://github.com/monarco/
 #
-# Copyright 2018 REX Controls s.r.o. http://www.rexcontrols.com
+# Copyright 2022 REX Controls s.r.o. http://www.rexcontrols.com
 # Author: Vlastimil Setka
 #
 #  This file is covered by the BSD 3-Clause License
@@ -17,11 +17,12 @@
 set -e
 
 GPIO_WR_ENABLE=26
+I2CDEV=3
 
 SCRIPTPATH=$(dirname $(readlink -f $0))
 
-echo "Monarco HAT ID EEPROM flash tool, version 1.2"
-echo "(c) REX Controls 2018, http://www.rexcontrols.com"
+echo "Monarco HAT ID EEPROM flash tool, version 1.3"
+echo "(c) REX Controls 2022, http://www.rexcontrols.com"
 echo ""
 
 if [ $EUID -ne 0 ]; then
@@ -113,25 +114,25 @@ fi
 
 modprobe i2c_dev
 
-dtoverlay i2c-gpio i2c_gpio_sda=0 i2c_gpio_scl=1
+dtoverlay i2c-gpio bus=$I2CDEV i2c_gpio_sda=0 i2c_gpio_scl=1
 rc=$?
 if [ $rc != 0 ]; then
   echo "ERROR: loading dtoverlay i2c-gpio failed (rc $rc), exiting"
   exit 4
 fi
 
-if [ ! -e /sys/class/i2c-adapter/i2c-3 ]; then
-  echo "ERROR: Missing i2c-3 device, something failed, exiting"
+if [ ! -e /sys/class/i2c-adapter/i2c-$I2CDEV ]; then
+  echo "ERROR: Missing i2c-$I2CDEV device, something failed, exiting"
   exit 4
 fi
 
 modprobe at24
 
-if [ ! -d "/sys/class/i2c-adapter/i2c-3/3-0050" ]; then
-  echo "24c32 0x50" > /sys/class/i2c-adapter/i2c-3/new_device
+if [ ! -d "/sys/class/i2c-adapter/i2c-$I2CDEV/$I2CDEV-0050" ]; then
+  echo "24c32 0x50" > /sys/class/i2c-adapter/i2c-$I2CDEV/new_device
 fi
 
-if [ ! -e "/sys/class/i2c-adapter/i2c-3/3-0050/eeprom" ]; then
+if [ ! -e "/sys/class/i2c-adapter/i2c-$I2CDEV/$I2CDEV-0050/eeprom" ]; then
   echo "ERROR: missing eeprom device file, something failed, exiting"
   exit 5
 fi
@@ -144,7 +145,7 @@ echo "0" > /sys/class/gpio/gpio${GPIO_WR_ENABLE}/value
 
 echo "# Writing EEPROM:"
 
-dd if=$FILE of=/sys/class/i2c-adapter/i2c-3/3-0050/eeprom status=progress
+dd if=$FILE of=/sys/class/i2c-adapter/i2c-$I2CDEV/$I2CDEV-0050/eeprom status=progress
 rc=$?
 if [ $rc != 0 ]; then
   echo "ERROR: ERITE FAILED (rc $rc), exiting"
@@ -155,7 +156,7 @@ echo ""
 echo "# Checking EEPROM:"
 
 TMPFILE=$(mktemp)
-dd of=$TMPFILE if=/sys/class/i2c-adapter/i2c-3/3-0050/eeprom status=progress
+dd of=$TMPFILE if=/sys/class/i2c-adapter/i2c-$I2CDEV/$I2CDEV-0050/eeprom status=progress
 rc=$?
 if [ $rc != 0 ]; then
   echo "ERROR: ERITE FAILED (rc $rc), exiting"
